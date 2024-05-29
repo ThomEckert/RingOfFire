@@ -19,7 +19,7 @@ import { GameInfoComponent } from "../game-info/game-info.component";
 export class GameComponent {
   pickCardAnimation = false;
   game: Game = new Game;
-  currentCard: string | undefined  = '';
+  currentCard: string = '';
 
   constructor(public dialog: MatDialog) {}
   
@@ -33,8 +33,8 @@ export class GameComponent {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
-    this.currentCard = this.game.stack.pop();
+    if (!this.pickCardAnimation && this.game) {
+    this.currentCard = this.game.stack.pop() || '';
     this.pickCardAnimation = true;
     console.log('New Card: ' + this.currentCard);
     console.log('Game is ', this.game);
